@@ -1,0 +1,144 @@
+
+/* LOGIN */
+
+.login {
+margin: 20px auto;
+width: 300px;
+}
+.login-screen {
+background-color: #FFF;
+padding: 20px;
+border-radius: 5px
+}
+
+.app-title {
+text-align: center;
+color: #777;
+}
+
+.login-form {
+text-align: center;
+}
+.control-group {
+margin-bottom: 10px;
+}
+input {
+text-align: center;
+background-color: #ECF0F1;
+border: 2px solid transparent;
+border-radius: 3px;
+font-size: 16px;
+font-weight: 200;
+padding: 10px 0;
+width: 250px;
+transition: border .5s;
+}
+
+input:focus {
+border: 2px solid #3498DB;
+box-shadow: none;
+}
+.btn {/*
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;*/
+  width: 100%;
+  /*margin: 0 auto;*/
+}
+/*
+.btn:hover {
+  background-color: #2980B9;
+}
+*/
+.login-link {
+  font-size: 12px;
+  color: #444;
+  display: block;
+  margin-top: 12px;
+
+}
+/*** PAGINAS CABEZA ***/
+
+/*** Derechos PIE ***/
+
+.derechos {
+  height: 1rem;
+  font-size: 10px;
+  text-align: center;
+}
+
+/** DISEÑO IMAGENES ICONOS TABLAS**/
+a.edit, a.delete {
+  text-decoration: none;
+}
+.icon-trash, .icon-edit{
+  padding-left: 10px;
+}
+.icon-trash{
+  color: crimson;
+}
+.icon-edit {
+  color: seagreen;
+}
+.numero{
+  text-align: center;
+}
+      /*Sin datos la tabla*/
+.resultado {
+
+  width: 100%;
+  text-align: center;
+  align-content: center;
+  border-radius: 50px;
+  border-style: solid;
+  border-color: darkgreen;
+}
+
+/***FROMS ALTAS***/
+
+.form-control {
+  border-radius: 25px;
+
+}
+/***H3 DISPLAY-5 CENTRADO***/
+.display-5{
+  text-align: center;
+}
+
+/*******DISEÑO TABLA DE ALTA DE PEDIDOS********/
+.nover {
+    /*visibility:collapse;*/
+    display: none;
+}
+
+
+/*********** DISEÑO DIV PARA ALTA DE FACULTAD **************/
+#div_facultad{
+  display: none;
+}
+
+/*********** DISEÑO corusel PARA portal **************/
+#carousel-item img{
+  height: 350px;
+}
+
+/************ DISEÑO TEXTO INPUT CENTRADO *******************/
+.text-left {
+  text-align: left;
+}
+
+/************** DISEÑO FILTROS *****************************/
+
+#div_text, #div_text2, #div_text3, #div_fecha, #div_fecha2, #div_pago, #div_estatus, #div_talla, 
+#div_color, #div_corte, #div_playera, #div_signo, #div_rol {
+  display: none;
+}
