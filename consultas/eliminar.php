@@ -115,4 +115,30 @@ function eliminarfacultad($id){
 	return array ($res,$msg);
 }
 
+/*** BAJA DE DATO EN TABLA TEMP PEDIDOS ***/
+function eliminarplayera($id){
+	$conn=conectarse();
+	$id=mysqli_escape_string($conn,$id);
+
+
+		$query="DELETE FROM prepedido WHERE idprepedido=$id";
+		///$res=mysqli_query($conn,$query);
+
+		if (false) {
+			$msg="Se quito el pedido correctamente";
+			$res=true;
+			$class='"alert alert-success"';
+		}else{
+			$msg="Fallo, registro no quitado";
+			$res=false;
+			$class='"alert alert-danger"';
+		}
+
+		echo "<div class=".$class.">";
+	   	echo $msg;
+		echo "</div>";
+
+	return array ($res,$msg);
+}
+
 ?>

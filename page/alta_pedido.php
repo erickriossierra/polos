@@ -21,13 +21,13 @@
     <?php 
     $folio =mysqli_fetch_object(buscarfoliopedido());
     $folio=$folio->folio;
-    altaprepedido();
+    //altaprepedido();
     ?>
-    <div>
-        <form class="row" method="post">
+    <div class="row">
+    <!--    <form class="row" method="post">-->
             <div class="col-md-1">
                 <label class="form-label">Folio</label>
-                <input type="text" id="pedido" name="pedido" class="form-control"  readonly value="<?php echo $folio;?>">
+                <input type="text" id="pedido" name="pedido" class="form-control" readonly onchange="readplayeras()" value="<?php echo $folio;?>">
             </div>
             <div class="col-md-5">
                 <label class="form-label">Elegir Vendedor</label>
@@ -161,14 +161,21 @@
                 <input class="form-control" type="date" id="entrega"name="entrega" min="<?php $hoy=date("Y-m-d"); echo $hoy;?>" required >
             </div>
 
-            <div class="col-md-12 pull-right" >
+            <!--<div class="col-md-12 pull-right" >
                 <hr>
                 <button type="submit" class="btn btn-outline-primary">Guardar en tabla</button>
+            </div>-->
+            <div class="col-md-3"></div>
+            <div class="col-md-6 " style="margin: 10px 0;">
+                <!--<input type="submit" id="add" class="btn btn-outline-cont" value="Agregar tarea">-->
+                <button class="btn btn-outline-primary" onclick="addplayera()">Agregar</button>
             </div>
-        </form>
+            <div class="col-md-3"></div>
+            
+        <!--</form>-->
     </div>
     <!-- LLENADO DE TABLA TEMPORAL -->
-<div class="table-title">
+<!--<div class="table-title">
         <div class="row">
             <div class="col-md-12"><h2 class="text-center">Tabla de <b>Playeras</b></h2></div>
             
@@ -230,9 +237,10 @@ $entrega=$row->entrega;
             <?php echo $entrega; ?> 
         </td>            
         <td class="numero">
-        <a href="quita_pedido.php?id=<?php echo $id;?>" class="delete" title="Eliminar" data-toggle="tooltip" onclick="return Confirmation()">
+       <a href="quita_pedido.php?id=<?php echo $id;?>" class="delete" title="Eliminar" data-toggle="tooltip" onclick="return Confirmation()">
             <i class="icon-trash"></i>
         </a>
+
         </td>
     </tr>   
 <?php
@@ -240,12 +248,27 @@ $entrega=$row->entrega;
 ?> 
 
         </tbody>
-    </table>
+    </table>-->
+    <div>
+        <div class="col-md-12" id="msg"></div>
+        <div id="records_content"></div>
+    </div>
     <div class="col-md-12 pull-right" >
         <hr>
-        <button type="button" class="btn btn-success">Guardar datos</button>
+        <button onclick="addplayera()" type="button" class="btn btn-success">Guardar datos</button>
     </div>
 </div>
+<script type="text/javascript" src="../js/scripts_pedidos.js"></script>
+<script type="text/javascript" src="../js/scripts_playeras.js"></script>
+<script type="text/javascript">
+    function Confirmation() {
 
+        if (confirm('Esta seguro de eliminar el registro?')==true) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 
 <?php pie();?>

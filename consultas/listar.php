@@ -103,7 +103,7 @@ function listarstock(){
 function listarprepedidos($folio) {
 	$conn=conectarse();
 	$query= "SELECT * FROM prepedido pp INNER JOIN playeras pl ON pp.idplayera=pl.idplayera INNER JOIN tallas ta ON pp.idtalla=ta.idtalla INNER JOIN colores co ON pp.idcolor=co.idcolor INNER JOIN cortes cs ON pp.idcorte=cs.idcorte INNER JOIN carreras ca ON pp.idcarrera=ca.idcarrera where pp.idpedido=$folio ORDER BY idprepedido";
-
+//print_r($query);
 	$res=$sql=mysqli_query($conn,$query);
 
 	$res=mysqli_num_rows($res);

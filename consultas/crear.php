@@ -316,27 +316,35 @@ function crearprepedido($playera, $color, $talla, $corte, $cantidad,$entrega, $v
 		$msg="Fallo, el cliente es distinto al capturado en la tabla. Cliente: ".$data->nombre;
 		$res=false;
 	} else {
+		if ($entrega=="" || $corte==""||$talla==""||$color==""||$carrera==""||$cantidad=="") {
+				// code...
+				$msg="Fallo, No se debe dejar ningun campo vació. ";
+				$res=false;
+			} else {
 
-		$sql= mysqli_query( $conn,"SELECT pp.* FROM prepedido pp where idplayera=$playera AND idcorte = $corte AND idcolor= $color AND idtalla=$talla AND idcliente=$cliente AND idcarrera=$carrera ");
+			$sql= mysqli_query( $conn,"SELECT pp.* FROM prepedido pp where idplayera=$playera AND idcorte = $corte AND idcolor= $color AND idtalla=$talla AND idcliente=$cliente AND idcarrera=$carrera ");
+	//print_r("SELECT pp.* FROM prepedido pp where idplayera=$playera AND idcorte = $corte AND idcolor= $color AND idtalla=$talla AND idcliente=$cliente AND idcarrera=$carrera");
+			$res=mysqli_num_rows($sql);
 
-		$res=mysqli_num_rows($sql);
-
-		if ($res>0) {
-			// code...
-			$msg="Fallo, las especificaciones de playera ya existe en la tabla.";
-			$res=false;
-		} else {
-			// code...	
-			$query="INSERT INTO prepedido VALUES ('', $pedido, $vendedor, $cliente, $playera, $color, $talla,$corte, $carrera, $cantidad, '$entrega')";
-
-			$res=mysqli_query($conn,$query);
-				if ($res) {
-					$msg="Alta de registro correcta. ";
-					$res=true;
-				}else{
-					$msg="Fallo, no se registro el movimiento. ";
-					$res=false;
-				}
+			if ($res>0) {
+				// code...
+				$msg="Fallo, las especificaciones de la playera ya existe en la tabla.";
+				$res=false;
+			} else {
+				// code...	
+				
+					// code...
+					$query="INSERT INTO prepedido VALUES ('', $pedido, $vendedor, $cliente, $playera, $color, $talla,$corte, $carrera, $cantidad, '$entrega')";
+	//print_r($query);
+				$res=mysqli_query($conn,$query);
+					if ($res) {
+						$msg="Alta de registro correcta. ";
+						$res=true;
+					}else{
+						$msg="Fallo, no se registro el movimiento. ";
+						$res=false;
+					}	
+			}
 		}
 	}
 		return array ($res,$msg);
