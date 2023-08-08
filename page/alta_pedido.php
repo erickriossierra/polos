@@ -21,13 +21,13 @@
     <?php 
     $folio =mysqli_fetch_object(buscarfoliopedido());
     $folio=$folio->folio;
-    //altaprepedido();
+   /* altaprepedido();*/
     ?>
     <div class="row">
     <!--    <form class="row" method="post">-->
             <div class="col-md-1">
                 <label class="form-label">Folio</label>
-                <input type="text" id="pedido" name="pedido" class="form-control" readonly onchange="readplayeras()" value="<?php echo $folio;?>">
+                <input type="text" id="pedido" name="pedido" class="form-control" readonly  value="<?php echo $folio;?>">
             </div>
             <div class="col-md-5">
                 <label class="form-label">Elegir Vendedor</label>
@@ -174,101 +174,18 @@
             
         <!--</form>-->
     </div>
-    <!-- LLENADO DE TABLA TEMPORAL -->
-<!--<div class="table-title">
-        <div class="row">
-            <div class="col-md-12"><h2 class="text-center">Tabla de <b>Playeras</b></h2></div>
-            
-        </div>
-    </div>
-<table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th class="numero">#</th>                
-                <th>Carrera</th>           
-                <th>Playera</th>                       
-                <th>Talla</th>
-                <th>Color</th>
-                <th>Corte</th>
-                <th class="numero">Cantidad</th>
-                <th>Entrega</th>
-                <th class="numero">Acciones</th>         
-            </tr>
-        </thead>
-         
-        <tbody>    
-<?php 
-$listado=listarprepedidos($folio);
 
-while ($row=mysqli_fetch_object($listado)){
-$id=$row->idprepedido;
-$cantidad=$row->cantidad;
-$playera=$row->nombre_playera;
-$talla=$row->letra;
-$color=$row->nombre_color;
-$corte=$row->nombre_corte;
-$carrera=$row->iniciales;
-$entrega=$row->entrega;
-
-?>
-    <tr>
-        <td class="numero">
-            <?php echo $id;?>
-        </td>      
-        <td>
-            <?php echo $carrera;?>            
-        </td>
-        <td >
-            <?php echo $playera;?>
-        </td>
-        <td>
-            <?php echo $talla;?>                
-        </td>
-        <td>
-            <?php echo $color; ?> 
-        </td>
-        <td>
-            <?php echo $corte; ?> 
-        </td>
-        <td class="numero">
-            <?php echo $cantidad; ?> 
-        </td>
-        <td>
-            <?php echo $entrega; ?> 
-        </td>            
-        <td class="numero">
-       <a href="quita_pedido.php?id=<?php echo $id;?>" class="delete" title="Eliminar" data-toggle="tooltip" onclick="return Confirmation()">
-            <i class="icon-trash"></i>
-        </a>
-
-        </td>
-    </tr>   
-<?php
-}
-?> 
-
-        </tbody>
-    </table>-->
     <div>
         <div class="col-md-12" id="msg"></div>
         <div id="records_content"></div>
     </div>
     <div class="col-md-12 pull-right" >
         <hr>
-        <button onclick="addplayera()" type="button" class="btn btn-success">Guardar datos</button>
+        <button onclick="addpedido()" type="button" class="btn btn-success">Guardar datos</button>
     </div>
 </div>
 <script type="text/javascript" src="../js/scripts_pedidos.js"></script>
 <script type="text/javascript" src="../js/scripts_playeras.js"></script>
-<script type="text/javascript">
-    function Confirmation() {
 
-        if (confirm('Esta seguro de eliminar el registro?')==true) {
-            return true;
-        }else{
-            return false;
-        }
-    }
-</script>
 
 <?php pie();?>

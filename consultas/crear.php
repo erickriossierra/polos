@@ -350,9 +350,10 @@ function crearprepedido($playera, $color, $talla, $corte, $cantidad,$entrega, $v
 		return array ($res,$msg);
 }
 
-function crearpedido(){
+function crearpedido($pedido){
 	$conn=conectarse();
-	$query="INSERT INTO `pedidos`  (SELECT idpedido, sum(cantidad) cantidad, (sum(cantidad) * 150) total, entrega, entrega, 1,8 FROM prepedido) ";
+	$pedido = mysqli_escape_string($conn,$pedido);
+	$query="INSERT INTO `pedidos`  (SELECT idpedido, sum(cantidad) cantidad, (sum(cantidad) * 150) total, entrega, entrega, 1,8 FROM prepedido WHERE idpedido=$pedido) ";
 	$res=mysqli_query($conn,$query);
 	if ($res) {
 		// code...
@@ -365,22 +366,22 @@ function crearpedido(){
 			
 			if ($res) {
 				// code...
-				$msg="Alta de cliente y playeras. ";
+				$msg="Alta del pedido de playeras del cliente. ";
 				$res=true;
 			} else {
 				// code...
 				$msg="Fallo, no se pudo limpiar la tabla prepedido. ";
 				$res=false;
-			}	
+			}// borrado de tabla prepedido	
 		}else{
-			$msg="Fallo, no se registro las playeras. ";
+			$msg="Fallo, no se registro el pedido de playeras del cliente. ";
 			$res=false;
-		}
+		}//tabla clientexplayeras
 	} else {
 		// code...
 		$msg="Fallo, no se registro el pedido.";
 		$res=false;
-	}
+	}//tabla pedidos 
 
 	return array ($res,$msg);	
 }

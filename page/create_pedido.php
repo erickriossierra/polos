@@ -2,18 +2,9 @@
 require_once '../consultas/crear.php'; //libreria de conexion a la base
 //$id = filter_input(INPUT_POST, 'id'); //obtenemos el parametro que viene de ajax
 $folio= filter_input(INPUT_POST, 'folio');
-$playera= filter_input(INPUT_POST, 'playera');
-$cant= filter_input(INPUT_POST, 'cant');
-$color= filter_input(INPUT_POST, 'color');
-$talla= filter_input(INPUT_POST, 'talla');
-$corte= filter_input(INPUT_POST, 'corte');
-$carrera= filter_input(INPUT_POST, 'carrera');
-$entrega= filter_input(INPUT_POST, 'entrega');
-$vendedor= filter_input(INPUT_POST, 'vendedor');
-$cliente= filter_input(INPUT_POST, 'cliente');
 
 	if($folio != ''){ //verificamos nuevamente que sea una opcion valida
-		$array=crearprepedido($playera, $color, $talla, $corte, $cant,$entrega, $vendedor,$cliente,$carrera,$folio);
+		$array=crearpedido($folio);
 		[$res,$msg]=$array;
 		
 		if($res){

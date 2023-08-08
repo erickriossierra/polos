@@ -158,21 +158,28 @@ function altaprepedido(){
 }
 
 function altapedido(){
-	$array =crearpedido();
+	if(isset($_POST) && !empty($_POST)){
+		
+		$pedido=$_POST['pedido'];
 
-	[$res,$msg]=$array;
-	
-	if($res){
-		$message= "Datos insertados a la tabla. ".$msg;
-		$class='"alert alert-success"';
-	}else{
-		$message="No se pudieron insertar los datos. " .$msg;
-		$class='"alert alert-danger"';
+		$array =crearpedido($pedido);
+
+		[$res,$msg]=$array;
+		
+		if($res){
+			$message= "Datos insertados a la tabla Playeras. ".$msg;
+			$class='"alert alert-success"';
+		}else{
+			$message="No se pudieron insertar los datos. " .$msg;
+			$class='"alert alert-danger"';
+		}
+
+		echo "<div class=".$class.">";
+	   	echo $message;
+		echo "</div>";
+
+
 	}
-
-	echo "<div class=".$class.">";
-   	echo $message;
-	echo "</div>";
 }
 
 /*******LISTADO DE PARAMETROS PARA CARRERAS*********/

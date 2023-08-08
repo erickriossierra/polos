@@ -38,10 +38,22 @@ function addplayera() {
 	    $("#talla").val("");
 	    $("#corte").val("");
 	    $("#carrera").val("");
-        $("#entrega").val("");
+        //$("#entrega").val("");
    
     });
 }
+//cargar y refrescar
+function readfolio() {
+    // body...
+    //var id=$("#id").val();
+    $.post("../page/read_folio.php", {
+        //id:id
+    }, function (data, status) {
+        $("#pedido").val(data);
+    });
+
+}
+
 // Leer tareas
 function readplayeras() {
     var folio = $("#pedido").val();
@@ -58,6 +70,7 @@ function readplayeras() {
 //borrar
 function Deleteplayera(id) {
 	var msg=$('#msg');
+    //var id=$("#id").val();
     var conf = confirm("¿Está seguro, realmente desea eliminar el registro?");
     $('#div_msg').css("display","none");
     if (conf == true) {
@@ -72,19 +85,10 @@ function Deleteplayera(id) {
         );
     }
 }
-/*/cargar y refrescar
-function readfolio() {
-    // body...
-    var id=$("#id").val();
-    $.post("../../json/read_folio.php", {
-        id:id
-    }, function (data, status) {
-        $("#folio").val(data);
-    });
-}
-*/
+
+
 $(document).ready(function () {
     // READ recods on page load
-    //readfolio();
+    readfolio();
     readplayeras(); // calling function
 });

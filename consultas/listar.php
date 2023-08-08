@@ -108,11 +108,11 @@ function listarprepedidos($folio) {
 
 	$res=mysqli_num_rows($res);
 
-	if ($res<=0) {
+	/*if ($res<=0) {
 
 		echo "<br><p class='resultado'>NO HAY REGISTROS</p>";
 
-	} 
+	} */
 		return $sql;
 }
 /***LLENADO DE TABLA DE Ponchados***/

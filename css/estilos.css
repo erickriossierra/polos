@@ -142,3 +142,40 @@ a.edit, a.delete {
 #div_color, #div_corte, #div_playera, #div_signo, #div_rol {
   display: none;
 }
+/**************** DISEÑO MENU DESPLEGAR ********************/
+.dropdown-ears {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+}
+.dropdown-ears button {
+  width: 100%;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.0);
+}
+.dropdown-content-ears {
+  display: none;
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+  z-index: 2;
+  background-color: white;
+}
+.dropdown-ears:hover .dropdown-content-ears {
+  display: block;
+}
+.dropdown-content-ears div {
+  display: block;
+  color: #000000;
+  padding: 5px;
+  
+}
+.dropdown-content-ears div:hover {
+  color: #FFFFFF;
+  background-color: #00A4BD;
+}
+.sinpadding {
+  padding: 0;
+}

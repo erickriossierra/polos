@@ -60,10 +60,8 @@ while($row =mysqli_fetch_object($result))
 				        <td>'.$entrega.'
 				        </td>            
 				        <td class="numero">
-       						<!--<a href="quita_pedido.php?id='.$id.'" class="delete" title="Eliminar" data-toggle="tooltip" onclick="Deleteplayera('.$id.')">
-            					<i class="icon-trash"></i>
-        					</a>-->
-        					<button class="delete" title="Eliminar" data-toggle="tooltip" onclick="Deleteplayera('.$id.')"><i class="icon-trash"></i></button>
+       						
+        					<button onclick="Deleteplayera('.$id.')" class="btn btn-danger"><i class="icon-eraser"></i></button>
         </td>
 				    </tr>   ';
 
@@ -72,7 +70,7 @@ while($row =mysqli_fetch_object($result))
 else
 {
 	// No hay registros
-	$data .= '<tr><td colspan="7" class="text-center">No hay tareas</td></tr>';
+	$data .= '<tr><td colspan="9" class="text-center">No hay registros</td></tr>';
 }
 $data .= '</tbody></table>';
 echo $data;

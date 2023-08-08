@@ -10,6 +10,16 @@ function buscarplayeras() {
 	return $sql;
 
 }
+function buscarsinplayera($id) {
+	$conn=conectarse();
+	$playera=mysqli_escape_string($conn,$id);
+	$query= "SELECT * FROM playeras WHERE idplayera<>$playera";
+
+	$sql=mysqli_query($conn,$query);
+
+	return $sql;
+
+}
 
 function buscartallas() {
 	$conn=conectarse();
@@ -133,10 +143,27 @@ function buscarclientes(){
 	$sql=mysqli_query($conn,$query);
 	return $sql;
 }
+function buscarsincliente($id){
+	$conn=conectarse();
+	$cliente=mysqli_escape_string($conn,$id);
+	$query="SELECT u.*, c.nombre carrera, f.idfacultad, f.nombre_facultad FROM usuarios u INNER JOIN carreras c ON u.idcarrera=c.idcarrera INNER JOIN facultades f ON c.idfacultad=f.idfacultad WHERE idrol=2 AND iduser<>$cliente";
+
+	$sql=mysqli_query($conn,$query);
+	return $sql;
+}
 function buscarvendedores(){
 	$conn=conectarse();
 	$query="SELECT u.*, c.nombre carrera, f.idfacultad, f.nombre_facultad FROM usuarios u INNER JOIN carreras c ON u.idcarrera=c.idcarrera INNER JOIN facultades f ON c.idfacultad=f.idfacultad WHERE idrol=3";
 
+	$sql=mysqli_query($conn,$query);
+	return $sql;
+}
+function buscarsinvendedores($id){
+	$conn=conectarse();
+	$vendedor=mysqli_escape_string($conn,$id);
+
+	$query="SELECT u.*, c.nombre carrera, f.idfacultad, f.nombre_facultad FROM usuarios u INNER JOIN carreras c ON u.idcarrera=c.idcarrera INNER JOIN facultades f ON c.idfacultad=f.idfacultad WHERE idrol=3 AND iduser<>$vendedor";
+//print_r($query);
 	$sql=mysqli_query($conn,$query);
 	return $sql;
 }
@@ -195,10 +222,14 @@ function buscarcxp($id){
 function buscarpedido($id){
 	$conn=conectarse();
 	$id=mysqli_escape_string($conn,$id);
-	$query="SELECT p.*, cxp.cantidad piezas , concat(us.nombre, ' ',us.apellidop,' ',us.apellidom ) nombre, e.nombreestatus proceso, nombre_playera playera, letra, nombre_color color, ca.nombre carrera, nombre_facultad facultad, nombre_universidad universidad, est.nombreestatus entrega FROM pedidos p INNER JOIN clientexplayeras cxp ON p.idpedido=cxp.idpedido INNER JOIN usuarios us ON cxp.idcliente=us.iduser INNER JOIN estatus e on cxp.idestatus=e.idestatus INNER JOIN playeras pl ON cxp.idplayera=pl.idplayera INNER JOIN tallas t ON cxp.idtalla=t.idtalla INNER JOIN colores co ON cxp.idcolor=co.idcolor INNER JOIN carreras ca ON cxp.idcarrera= ca.idcarrera INNER JOIN facultades fa on ca.idfacultad=fa.idfacultad INNER JOIN universidades un ON fa.iduniversidad=un.iduniversidad INNER JOIN estatus est on p.idestatus=est.idestatus WHERE p.idpedido=$id AND cxp.idestatus<>6 ";
+	$query="SELECT p.*, cxp.cantidad piezas , idcliente, concat(us.nombre, ' ',us.apellidop,' ',us.apellidom ) nombre, idvendedor,concat(us2.nombre, ' ',us2.apellidop,' ',us2.apellidom ) vendedor, e.nombreestatus proceso, nombre_playera playera, letra, nombre_color color, ca.nombre carrera, nombre_facultad facultad, nombre_universidad universidad, est.nombreestatus entrega, cxp.idplayera, estpag.nombreestatus pago FROM pedidos p INNER JOIN clientexplayeras cxp ON p.idpedido=cxp.idpedido INNER JOIN usuarios us ON cxp.idcliente=us.iduser INNER JOIN usuarios us2 ON cxp.idvendedor=us2.iduser INNER JOIN estatus e on cxp.idestatus=e.idestatus INNER JOIN playeras pl ON cxp.idplayera=pl.idplayera INNER JOIN tallas t ON cxp.idtalla=t.idtalla INNER JOIN colores co ON cxp.idcolor=co.idcolor INNER JOIN carreras ca ON cxp.idcarrera= ca.idcarrera INNER JOIN facultades fa on ca.idfacultad=fa.idfacultad INNER JOIN universidades un ON fa.iduniversidad=un.iduniversidad INNER JOIN estatus est on p.idestatus=est.idestatus INNER JOIN estatus estpag on p.idestatuspago=estpag.idestatus WHERE p.idpedido=$id AND cxp.idestatus<>6 ";
 
 	$sql=mysqli_query($conn,$query);
+	$row=MYSQLi_NUM_ROWS($sql); 
 
+	if ($row<=0) {
+		echo "<br><br><p class='resultado'>NO HAY REGISTROS</p>";
+	}
 	return $sql;
 }
 /********* BUSQUEDA DE FOLIOS ***********/

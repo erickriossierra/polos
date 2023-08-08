@@ -118,6 +118,9 @@ function pagina(){
         } elseif ($pagina=="/page/quita_carrera.php") {
             // code...
             $pagina="Baja Carrera";
+        } elseif ($pagina=="/page/quita_pedido.php") {
+            // code...
+            $pagina="Baja Pedido";
 
 /******************TITLE EDITA*************************/
         }elseif ($pagina=="/page/modifica_stock.php") {
