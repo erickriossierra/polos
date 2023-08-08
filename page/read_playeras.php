@@ -59,7 +59,12 @@ while($row =mysqli_fetch_object($result))
 				        </td>
 				        <td>'.$entrega.'
 				        </td>            
-				        <td class="numero"></td>
+				        <td class="numero">
+       						<!--<a href="quita_pedido.php?id='.$id.'" class="delete" title="Eliminar" data-toggle="tooltip" onclick="Deleteplayera('.$id.')">
+            					<i class="icon-trash"></i>
+        					</a>-->
+        					<button class="delete" title="Eliminar" data-toggle="tooltip" onclick="Deleteplayera('.$id.')"><i class="icon-trash"></i></button>
+        </td>
 				    </tr>   ';
 
 	}

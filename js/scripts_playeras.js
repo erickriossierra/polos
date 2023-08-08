@@ -56,17 +56,17 @@ function readplayeras() {
     });
 }
 //borrar
-function DeleteUser(id) {
+function Deleteplayera(id) {
 	var msg=$('#msg');
     var conf = confirm("¿Está seguro, realmente desea eliminar el registro?");
     $('#div_msg').css("display","none");
     if (conf == true) {
-        $.post("../../json/delete_tarea.php", {
+        $.post("../page/delete_playera.php", {
                 id: id
             },
             function (data, status) {
                 // reload Users by using readRecords();
-                readtareas();
+                readplayeras();
                 msg.html(data);
             }
         );

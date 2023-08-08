@@ -32,9 +32,9 @@
             <div class="col-md-5">
                 <label class="form-label">Elegir Vendedor</label>
             <?php if ($_SESSION['permisos']==3) { ?>
-                <input type="hidden" name="vendedor" value="<?php echo $_SESSION['userid'] ?>">
+                <input type="hidden" name="vendedor" id="vendedor" value="<?php echo $_SESSION['userid'] ?>">
             <?php } ?>
-                <select name="vendedor" class="form-select" <?php if ($_SESSION['permisos']==3) { echo "disabled"; }?> >
+                <select name="vendedor" id="vendedor" class="form-select" <?php if ($_SESSION['permisos']==3) { echo "disabled"; }?> >
                     <?php
                 if ($_SESSION['permisos']==3) {
                     echo "<option value='" ;
