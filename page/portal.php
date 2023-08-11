@@ -6,7 +6,7 @@ encabezado();
 ?>
 <div class="row">
 	<div class="text-center">
-		<h2 class="display-3">Bienvenido <?php echo $_SESSION['name']?>
+		<h2 class="">Bienvenido <?php echo $_SESSION['name']?>
 		</h2>
 	</div>
 </div>

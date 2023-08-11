@@ -139,7 +139,7 @@ a.edit, a.delete {
 /************** DISEÑO FILTROS *****************************/
 
 #div_text, #div_text2, #div_text3, #div_fecha, #div_fecha2, #div_pago, #div_estatus, #div_talla, 
-#div_color, #div_corte, #div_playera, #div_signo, #div_rol {
+#div_color, #div_corte, #div_playera, #div_signo, #div_rol, #div_comen {
   display: none;
 }
 /**************** DISEÑO MENU DESPLEGAR ********************/
@@ -152,7 +152,8 @@ a.edit, a.delete {
 .dropdown-ears button {
   width: 100%;
   border-radius: 25px;
-  background-color: rgba(0, 0, 0, 0.0);
+  background-color: rgba(255, 255, 255, 1.0);
+  border-width: 0.2px;
 }
 .dropdown-content-ears {
   display: none;

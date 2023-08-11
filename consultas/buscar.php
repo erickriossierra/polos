@@ -235,8 +235,8 @@ function buscarpedido($id){
 /********* BUSQUEDA DE FOLIOS ***********/
 function buscarfoliopedido(){
 	$conn=conectarse();
-	$query="SELECT max(idpedido)+1 folio FROM pedidos ";
-
+	$query="SELECT IFNULL(max(idpedido),0)+1 folio FROM pedidos ";
+//print_r($query);
 	$sql=mysqli_query($conn,$query);
 	return $sql;
 }

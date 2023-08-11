@@ -180,32 +180,58 @@ function listarpedcli($id){
 /***LLENADO DE TABLA DE PAGOS ***/
 function listarsaldos() {
 	$conn=conectarse();
-	$WHERE = "";
+	$WHERE = "WHERE idestatuspago<>7 GROUP BY idpedido";
 	if(isset($_POST['filtro'])){
 		$filtro=$_POST['filtro'];
 		switch($filtro){
 		case "0":
-		$WHERE = "";
+		$WHERE = "WHERE idestatuspago<>7 GROUP BY idpedido";
 		break;
 		case "1":
 		$pedido=$_POST['texto'];
-		$WHERE = "WHERE pa.idpedido = $pedido ";
+		$WHERE = "WHERE idestatuspago<>7 pa.idpedido = $pedido GROUP BY idpedido";
 		break;
 		case "2":
 		$nombre=$_POST['texto2'];
-		$WHERE = "where nombre like '%$nombre%' OR apellidop like '%$nombre%' OR apellidom like '%$nombre%' order by nombre asc;";
-		break;
-		case "3":
-		$min=$_POST['fecha'];
-		$max=$_POST['fecha2'];
-		$WHERE = "Where fecha_pago BETWEEN'$min' and '$max' order by fecha_pago asc;";
-		break;
+		$WHERE = "WHERE idestatuspago<>7 nombre like '%$nombre%' OR apellidop like '%$nombre%' OR apellidom like '%$nombre%' GROUP BY idpedido ORDER BY nombre asc;";
+		break;		
 		case "4":
-		$WHERE = "";
+		$estatus=$_POST['estatus'];
+		//$signo=$_POST['signo'];
+		//$WHERE = "WHERE idestatuspago". $signo. $estatus." GROUP BY idpedido";
+		$WHERE = "WHERE idestatuspago =". $estatus." GROUP BY idpedido";
+		break;
+		case "5":
+			$WHERE = " GROUP BY idpedido";
+		}
+	}
+	$query= "SELECT pa.*, CONCAT(us.nombre,' ',us.apellidop,' ',us.apellidom) nombre, nombreestatus FROM pagos pa INNER JOIN pedidos pe ON pa.idpedido=pe.idpedido INNER JOIN clientexplayeras cxp ON pa.idpedido=cxp.idpedido INNER JOIN usuarios us ON cxp.idcliente=us.iduser INNER JOIN estatus es ON pe.idestatuspago=es.idestatus $WHERE ";
+//print_r($query);
+	$res=$sql=mysqli_query($conn,$query);
+
+	$res=mysqli_num_rows($res);
+
+	if ($res<=0) {
+
+		echo "<br><p class='resultado'>NO HAY REGISTROS</p>";
+	} 
+		return $sql;
+}
+function listarpagos($pedido) {
+	$conn=conectarse();
+	$pedido=mysqli_escape_string($conn,$pedido);
+	$WHERE = "";
+	if(isset($_POST['filtro'])){
+		$filtro=$_POST['filtro'];
+		switch($filtro){	
+		case "3":
+			$min=$_POST['fecha'];
+			$max=$_POST['fecha2'];
+			$WHERE = "AND fecha_pago BETWEEN'$min' and '$max' ORDER BY fecha_pago asc;";
 		break;
 		}
 	}
-	$query= "SELECT DISTINCT(pa.idpago), pa.*, CONCAT(us.nombre,' ',us.apellidop,' ',us.apellidom) nombre FROM pagos pa INNER JOIN pedidos pe ON pa.idpedido=pe.idpedido INNER JOIN clientexplayeras cxp ON pa.idpedido=cxp.idpedido INNER JOIN usuarios us ON cxp.idcliente=us.iduser $WHERE";
+	$query= "SELECT * FROM pagos pa where idpedido=$pedido $WHERE";
 
 	$res=$sql=mysqli_query($conn,$query);
 

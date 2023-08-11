@@ -57,7 +57,8 @@ function encabezado(){
         header('Location: login.php');
         exit; 
     }
-
+    setlocale(LC_TIME, 'es_ES');
+    date_default_timezone_set('America/Mexico_City');
 	/**Estructura paginas */
 	$pagina=pagina();
 

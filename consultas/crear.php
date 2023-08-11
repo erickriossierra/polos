@@ -212,21 +212,21 @@ function crearuniversidad($iniciales, $corto, $universidad){
 }
 
 /*** ALTA DE DATOS EN TABLA UNIVERSIDADES ***/
-function crearpago($pedido, $monto, $fecha){
+function crearpago($pedido, $monto, $fecha, $img){
 	$conn=conectarse();
 	
 	$pedido=mysqli_escape_string($conn,$pedido);
 	$monto=mysqli_escape_string($conn,$monto);
 	$fecha=mysqli_escape_string($conn,$fecha);
-	
+	$img=mysqli_escape_string($conn,$img);///POR SI se requiere el uso
 
-	$data=mysqli_query($conn,"SELECT (sum(monto)+$monto) pagos, pe.total FROM pagos pa INNER JOIN pedidos pe ON pa.idpedido=pe.idpedido where pe.idpedido='$pedido'");
+	$data=mysqli_query($conn,"SELECT (IFNULL(sum(monto),0)+$monto) pagos, pe.total FROM pagos pa INNER JOIN pedidos pe ON pa.idpedido=pe.idpedido where pe.idpedido='$pedido'");
 	$data=mysqli_fetch_object($data);
 
 	$pagos=$data->pagos;
 	$total=$data->total;
-
 	if ($pagos<=$total) {
+//	if (false) {
 		// code...
 		$data=mysqli_query($conn,"SELECT MAX(fecha_pago) fechabd FROM pagos where idpedido=$pedido");
 		$data=mysqli_fetch_object($data);

@@ -278,8 +278,15 @@ function altapago(){
 		$monto=$_POST['monto'];
 		$pedido=$_POST['pedido'];
 		$fecha=$_POST['fecha'];
+		if (isset($_FILES['dataimg'])&& !empty($_FILES['dataimg'])) {
+			// code...
+			$img=$_FILES['dataimg'];
+		} else {
+			// code...
+			$img="Efectivo.jpeg";
+		}
 
-		$array =crearpago( $pedido, $monto, $fecha);
+		$array =crearpago( $pedido, $monto, $fecha, $img);
 
 		[$res,$msg]=$array;
 		

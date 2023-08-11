@@ -120,30 +120,186 @@ function actualizarcxp($id, $estatus){
 	$conn=conectarse();
 	$estatus=mysqli_escape_string($conn,$estatus);
 	$id=mysqli_escape_string($conn,$id);
-	$sql="SELECT * FROM clientexplayeras where idclixplay=$id AND idestatus=$estatus";
+	$sql="SELECT * FROM clientexplayeras cxp
+	INNER JOIN playeras pla ON cxp.idplayera=pla.idplayera INNER JOIN cortes cor ON cxp.idcorte=cor.idcorte INNER JOIN colores col ON cxp.idcolor=col.idcolor INNER JOIN tallas ta ON cxp.idtalla=ta.idtalla
+	where idclixplay=$id ";
 //print_r($sql);
-	$res=mysqli_query($conn,$sql);
-	$res=mysqli_num_rows($res);
+	$num=$query=mysqli_query($conn,$sql);
+	$query=mysqli_fetch_object($query);
+	$res=mysqli_num_rows($num);
+//print_r($query);
+	/***********************/
+	if ($res>0) {
+		// code...
+		$sql2="SELECT st.*,nombre_playera,nombre_corte,letra,nombre_color FROM stocks st INNER JOIN playeras pla ON st.idplayera=pla.idplayera INNER JOIN cortes cor ON st.idcorte=cor.idcorte INNER JOIN colores col ON st.idcolor=col.idcolor INNER JOIN tallas ta ON st.idtalla=ta.idtalla WHERE st.idplayera=$query->idplayera AND st.idcolor=$query->idcolor AND st.idtalla=$query->idtalla AND st.idcorte=$query->idcorte ";
+//				print_r($sql2);
+		$num2=$query2=mysqli_query($conn,$sql2);
+		$query2=mysqli_fetch_object($query2);
+		$num2=mysqli_num_rows($num2);
+		if ($num2<=0) {
+			// code...
+			$msg="Fallo, No hay exitencias de la playera tipo: ".$query->nombre_playera." de la talla ".$query->letra." del color ".$query->nombre_color." del tipo corte ".$query->nombre_corte." solicitada.";
+			$res=false;
+			
+		} else {
+			// code...
+			/**************************/
+			switch ($estatus) {
+				case '1':
+					// code...
+					$msg="No se puede usar vigente";
+					$res=false;
+					break;
+				case '2':
+					// code...
+					if ($query->idestatus==$estatus) {
+						// code...
+						$msg="El pedido está ya cancelado";
+						$res=false;
+					} else {
+						// code...
+						if ($query->idestatus==3) {
+							// code...
+							$query3="UPDATE clientexplayeras SET idestatus=$estatus WHERE idclixplay=$id";
+							$res=mysqli_query($conn,$query3);
 
+							if ($res) {
+								// code...
+								$query4="UPDATE stocks SET stock=stock+$query->cantidad WHERE idstock=$query2->idstock";
+						//print_r($query4);
+								$res=mysqli_query($conn,$query4);
+								if ($res) {
+									$msg="Actualización de estatus de ponchado correctamente. ";
+									$res=true;
+								}else{
+									$msg="Fallo, registro del stock no actualizado.";
+									$res=false;
+								}
+							} else {
+							// code...
+								$msg="Fallo, estado del ponchado no actualizado.";
+								$res=false;
+							}
+						} else {
+							// code...
+							$query3="UPDATE clientexplayeras SET idestatus=$estatus WHERE idclixplay=$id";
+							$res=mysqli_query($conn,$query3);
+							if ($res) {
+								$msg="Actualización de estatus de ponchado correctamente. ";
+								$res=true;
+							}else{
+								$msg="Fallo, registro del ponchado no actualizado.";
+								$res=false;
+							}
+						}
+						
+					}
+					
+					break;
+				case '3':
+					// code...
+					if ($query->idestatus==$estatus) {
+						// code...
+						$msg="El pedido está en proceso";
+						$res=false;
+					} else {
+						// code...
+						if ($query->cantidad<=$query2->stock) {
+							// code...
+							$query3="UPDATE clientexplayeras SET idestatus=$estatus WHERE idclixplay=$id";
+							$res=mysqli_query($conn,$query3);
+
+							if ($res) {
+							// code...
+								$query4="UPDATE stocks SET stock=stock-$query->cantidad WHERE idstock=$query2->idstock";
+						//print_r($query4);
+								$res=mysqli_query($conn,$query4);
+								if ($res) {
+									$msg="Actualización de estatus de ponchado correctamente. ";
+									$res=true;
+								}else{
+									$msg="Fallo, registro del stock no actualizado.";
+									$res=false;
+								}
+							} else {
+							// code...
+								$msg="Fallo, estado del ponchado no 	actualizado.";
+								$res=false;
+							}
+						} else {	
+							// code...
+							$msg="Fallo, no hay en Stock la cantidad solicitada.";
+							$res=false;
+						}
+						
+					}		
+					break;
+				default:
+					// code...
+					$msg="Fallo, estado no válido o no aplica.";
+					$res=false;
+					break;
+			}
+		}
+		
+	}
+	return array ($res,$msg);
+	
+}	
+
+/*
 	if ($res>0) {
 		// code...
 		$msg="Fallo, registro no actualizado. Se coloco el mismo estatus";
 		$res=false;
 	} else {
 		// code...
-		$query="UPDATE clientexplayeras SET idestatus=$estatus WHERE idclixplay=$id";
-		$res=mysqli_query($conn,$query);
+		$sql="SELECT * FROM clientexplayeras where idclixplay=$id ";
+	//print_r($sql);
+		$query=mysqli_query($conn,$sql);
+		$query=mysqli_fetch_object($query);
 
-		if ($res) {
-			$msg="Actualización de estatus de ponchado correctamente. ";
-			$res=true;
-		}else{
-			$msg="Fallo, registro no actualizado.";
-			$res=false;
-		}	
+		$sql2="SELECT st.*,nombre_playera,nombre_corte,letra,nombre_color FROM stocks st INNER JOIN playeras pla ON st.idplayera=pla.idplayera INNER JOIN cortes cor ON st.idcorte=cor.idcorte INNER JOIN colores col ON st.idcolor=col.idcolor INNER JOIN tallas ta ON st.idtalla=ta.idtalla WHERE st.idplayera=$query->idplayera AND st.idcolor=$query->idcolor AND st.idtalla=$query->idtalla AND st.idcorte=$query->idcorte ";
+			//print_r($sql2);
+		$query2=mysqli_query($conn,$sql2);
+		$query2=mysqli_fetch_object($query2);
+		if ($query->idestatus!=2 ) {				
+			if ($query->cantidad>$query2->stock) {
+					// code...
+					$msg="Fallo, No hay exitencias de la playera ".$query->nombre_playera." de la talla ".$query->letra." del color ".$query->nombre_color." del tipo corte ".$query->nombre_corte." solicitada.";
+					$res=false;
+
+				} else {
+					// code...
+					$query3="UPDATE clientexplayeras SET idestatus=$estatus WHERE idclixplay=$id";
+					$res=mysqli_query($conn,$query3);
+
+					if ($res) {
+						// code...
+						$query4="UPDATE stocks SET stock=stock-$query->cantidad WHERE idstock=$query2->idstock";
+					//print_r($query4);
+						$res=mysqli_query($conn,$query4);
+						if ($res) {
+							$msg="Actualización de estatus de ponchado correctamente. ";
+							$res=true;
+						}else{
+							$msg="Fallo, registro del stock no actualizado.";
+							$res=false;
+						}
+					} else {
+						// code...
+						$msg="Fallo, estado del ponchado no actualizado.";
+						$res=false;
+					}
+				}	
+			}else {
+				$msg="Fallo, ya está cancelado.";
+				$res=false;	
+			}
+				
 	}
-	return array ($res,$msg);
-}
+	*/
+
 
 function actualizarentrega($id, $estatus){
 	$conn=conectarse();

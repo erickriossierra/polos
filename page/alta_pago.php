@@ -22,7 +22,7 @@
     ?>
     <div>
         <form class="row" method="POST">
-            <div class="col-md-auto">
+            <div class="col-md-3">
                 <label class="form-label">Elegir Pedido</label>
                 <select name="pedido" class="form-select">
                     <?php
@@ -44,6 +44,22 @@
                 <label class="form-label">Fecha Pago</label>
                 <input type="date" name="fecha" class="form-control" required>
             </div>
+            <!--
+            <div class="col-md-10" id="div_comen">
+                <label class="form-label">Comentario</label>
+                <input class="form-control text-left" type="text" name="img" id="img">
+            </div>
+            <div class="col-md-10">
+                <label class="form-label" for="dataimg">Imagen</label>
+                <input disabled type="file" name="dataimg" id="dataimg" class="form-control ">
+            </div>
+            <div class="col-md-2">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="mod_img" onclick="colocaimg()">
+                    <label class="form-check-label" for="mod_img">Colocar imágen</label>
+                </div>
+            </div>
+        -->
             <div class="col-md-12 pull-right" >
             <hr>
                 <button type="submit" class="btn btn-success">Guardar datos</button>
@@ -52,5 +68,18 @@
     </div>
     
 </div>
-  
+<script type="text/javascript">
+    /*
+    function colocaimg() {
+        // body...
+        if (document.getElementById("mod_img").checked) {
+            document.getElementById("dataimg").removeAttribute("disabled","");
+            document.getElementById("dataimg").setAttribute("required","");
+        }else{
+            document.getElementById("dataimg").setAttribute("disabled","");
+            document.getElementById("dataimg").removeAttribute("required","");
+        }
+    }
+    */
+</script>  
 <?php pie();?>
