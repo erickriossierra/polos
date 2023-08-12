@@ -10,7 +10,7 @@ encabezado();
 		</h2>
 	</div>
 </div>
-<div class="row">
+<div class="row div_menu">
 	<div class="col-md-6">
 		<div class="dropdown-ears">
 		  <button>Quienes somos</button>
@@ -25,7 +25,7 @@ encabezado();
 		  	</div>
 		</div>
 	</div>
-	<div class="col-md">
+	<div class="col-md-4">
 		<div class="dropdown-ears">
 		  <button>OTRO</button>
 		  	<div class="dropdown-content-ears">
@@ -73,21 +73,21 @@ encabezado();
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <img height="500px" src="..\img\promos\ALIANZA_SANTANDER_CUPON_red.jpg" class="d-block w-100" alt="alainza santander contpaqi®">
+      <img height="450px" src="..\img\promos\ALIANZA_SANTANDER_CUPON_red.jpg" class="d-block w-100" alt="alainza santander contpaqi®">
       <div class="carousel-caption d-none d-md-block">
         <h5>Alianza Santander</h5>
         <p>Aprovecha el cupon que tenemos para ti.</p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img height="500px" src="..\img\promos\CIERRETIMBRADO.JPEG" class="d-block w-100" alt="contpaqi® timbres licenciamiento tradicional">
+      <img height="450px" src="..\img\promos\CIERRETIMBRADO.JPEG" class="d-block w-100" alt="contpaqi® timbres licenciamiento tradicional">
       <div class="carousel-caption d-none d-md-block">
         <h5>No te quedes sin tus timbres.</h5>
         <p>LICENCIAMINETOS tradicionales. No pierdas el timbrado ilimitado y sin costo. Actualiza tu versión del sistema a la últuima.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img height="500px" src="..\img\promos\DECIDE_ANUAL_FB.jpg" class="d-block w-100" alt="decide contpaqi® reportes nube">
+      <img height="450px" src="..\img\promos\DECIDE_ANUAL_FB.jpg" class="d-block w-100" alt="decide contpaqi® reportes nube">
       <div class="carousel-caption d-none d-md-block">
         <h5>Decide tu reporte en la nube</h5>
         <p>Canjea tu decide y visualiza reportes desde cualquier dispositivo.</p>

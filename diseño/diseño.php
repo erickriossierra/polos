@@ -106,10 +106,10 @@ function encabezado(){
 		          <a class="nav-link" href="./lista_pedidos.php"><i class="icon-open-book"></i> Pedidos</a>
 		        </li>
 <?php if ($_SESSION['permisos']!=2) { ?>		     
-		        <li class="nav-item">
+	<!--       <li class="nav-item">
 		          <a class="nav-link" href="./lista_stock.php"><i class=" icon-database"></i> Playeras Stock</a>
-		        </li>
-<?php if ($_SESSION['permisos']!=4) { ?>		        
+		        </li> -->
+	<?php if ($_SESSION['permisos']!=4) { ?>		        
 		        <li class="nav-item">
 		          <a class="nav-link" href="./lista_clientes.php"><i class="icon-man"></i> Clientes</a>
 		        </li>
@@ -124,14 +124,15 @@ function encabezado(){
 		            <li><a class="dropdown-item" href="./lista_carreras.php">Carreras</a></li>
 		          </ul>
 		        </li>
-<?php } ?>		        
+	<?php } ?>		        
 		        <li class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" href="#" id="procesos" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class=" icon-time-slot"></i>
 		            Procesos
 		          </a>
 		          <ul class="dropdown-menu" aria-labelledby="procesos">
-		        
 		        <?php if ($_SESSION['permisos']==4 OR $_SESSION['permisos']==1 ) { ?>    
+		            <li><a class="dropdown-item" href="./lista_stock.php"><i class=" icon-database"></i> Playeras Stock</a></li>
+		            <li><hr class="dropdown-divider"></li> 
 		            <li><a class="dropdown-item" href="./lista_ponchados.php">Ponchados</a></li>
 		        <?php	} ?>  
 	        	<?php if ($_SESSION['permisos']==1 ) { ?> 
@@ -145,6 +146,16 @@ function encabezado(){
 		          </ul>
 		        </li>       	
 <?php } ?>		        
+		        <li class="nav-item">
+		          <a class="nav-link disabled" href="#"></a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link disabled" href="#"></a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link disabled" href="#"></a>
+		        </li>
+
 		        <li class="nav-item">
 		          <a class="nav-link" href="./logout.php"><i class="icon-log-out"></i> Salir</a>
 		        </li>

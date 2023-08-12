@@ -12,11 +12,11 @@
 <?php if ($_SESSION['permisos']!=1 AND $_SESSION['permisos']!=5) { ?>
             <div class="col-md-4"></div>
 <?php } ?>            
-            <div class="col-md-2">
+            <div class="col-md-2 ">
                 <a href=".\portal.php" class="btn btn-outline-dark"><i class="icon-home"></i> Inicio</a>
             </div>
 <?php if ($_SESSION['permisos']==1 OR $_SESSION['permisos']==5) { ?>
-            <div class="col-md-4">
+            <div class="col-md-4 div_entre">
                 <a href=".\alta_stock.php" class="btn btn-outline-success"><i class="icon-circle-with-plus"></i> Alta inventario</a>
             </div>
 <?php } ?>
@@ -25,28 +25,28 @@
 <!-- INICIO FILTROS -->
     <div id="filtros"> Selecciona el filtro deseado
         <form class="row" action="lista_stock.php" method="post">
-            <div class="col-sm-2">
-            <select class="form-select" name="filtro" id="filtro" onchange="filtros()">
-                <option value="0"></option>
-                <option value="1">Stock</option>
-                <option value="3">Fecha Entrega</option>
-                <option value="4">Fecha Salida</option>
-                <option value="5">Talla</option>
-                <option value="6">Color</option>
-                <option value="7">Playera</option>
-                <option value="8">Corte</option>
-            </select>
+            <div class="col-md-2" id="div_select">
+                <select class="form-select" name="filtro" id="filtro" onchange="filtros()">
+                    <option value="0"></option>
+                    <option value="1">Stock</option>
+                    <option value="3">Fecha Entrega</option>
+                    <option value="4">Fecha Salida</option>
+                    <option value="5">Talla</option>
+                    <option value="6">Color</option>
+                    <option value="7">Playera</option>
+                    <option value="8">Corte</option>
+                </select>
             </div>
             <div class="col-md-1" name="div_text" id="div_text">
                 <input type="text" name="texto" id="texto" class="form-control">
             </div>
-            <div class="col-sm-4" name="div_fecha" id="div_fecha">
+            <div class="col-md-4" name="div_fecha" id="div_fecha">
                 <input type="date" name="fecha" id="fecha" class="form-control" >
             </div>
-            <div class="col-sm-4" name="div_fecha2" id="div_fecha2">
+            <div class="col-md-4" name="div_fecha2" id="div_fecha2">
                 <input type="date" name="fecha2" id="fecha2" class="form-control">
             </div>
-            <div class="col-sm-auto" name="div_signo" id="div_signo">
+            <div class="col-md-auto" name="div_signo" id="div_signo">
                 <select class="form-select" name="signo" id="signo">
                     <option value="=">Igual</option>
                     <option value="<">Menor que</option>

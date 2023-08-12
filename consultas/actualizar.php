@@ -234,6 +234,34 @@ function actualizarcxp($id, $estatus){
 						
 					}		
 					break;
+				case '5':
+					// code...
+					if ($query->idestatus==$estatus) {
+						// code...
+						$msg="El pedido está ya finalizado";
+						$res=false;
+					} else {
+						// code...
+						if ($query->idestatus==3) {
+							// code...
+							$query3="UPDATE clientexplayeras SET idestatus=$estatus WHERE idclixplay=$id";
+							$res=mysqli_query($conn,$query3);
+							if ($res) {
+								$msg="Ponchado finalizado correctamente. ";
+								$res=true;
+							}else{
+								$msg="Fallo, registro del ponchado no actualizado.";
+								$res=false;
+							}
+
+						} else {
+							$msg="Fallo, el pedido no está en proceso o está cancelado.";
+							$res=false;
+						}
+						
+					}
+					
+					break;
 				default:
 					// code...
 					$msg="Fallo, estado no válido o no aplica.";

@@ -12,23 +12,23 @@
                 <a href=".\portal.php" class="btn btn-outline-dark"><i class="icon-home"></i> Inicio</a>
             </div>
 
-            <div class="col-md-4">
-                <a href=".\alta_carrera.php" class="btn btn-outline-success"><i class="icon-circle-with-plus"></i> Alta carrera</a>
+            <div class="col-md-4 div_entre">
+                <a href=".\alta_carrera.php" class="btn btn-outline-success "><i class="icon-circle-with-plus"></i> Alta carrera</a>
             </div>
 
         </div>
     </div>
     <!-- INICIO FILTROS -->
-    <div id="filtros"> Selecciona el filtro deseado
+    <div id="filtros" class=""> Selecciona el filtro deseado
         <form class="row" action="lista_carreras.php" method="post">
-            <div class="col-sm-2">
-            <select class="form-select" name="filtro" id="filtro" onchange="filtros()">
-                <option value="0"></option>
-                <option value="1">Facultad</option>
-                <option value="2">Sigla</option>
-                <option value="3">Carrera</option>
-               <!-- <option value="4"></option>-->
-            </select>
+            <div class="col-md-2" id="div_select">
+                <select class="form-select" name="filtro" id="filtro" onchange="filtros()">
+                    <option value="0"></option>
+                    <option value="1">Facultad</option>
+                    <option value="2">Sigla</option>
+                    <option value="3">Carrera</option>
+                   <!-- <option value="4"></option>-->
+                </select>
             </div>
             <div class="col-md-6" name="div_text" id="div_text">
                 <input type="text" name="texto" id="texto" class="form-control">
@@ -36,7 +36,7 @@
             <div class="col-md-2" name="div_text2" id="div_text2">
                 <input type="texto" name="texto2" id="texto2" class="form-control">
             </div>
-            <div class="col-sm-6" name="div_text3" id="div_text3">
+            <div class="col-md-6" name="div_text3" id="div_text3">
                 <input type="texto" name="texto3" id="texto3" class="form-control">
             </div>
             <div class="col-md-2">

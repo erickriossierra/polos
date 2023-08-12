@@ -17,13 +17,13 @@ inicio();
 
       <div class="login-form">
         <div class="control-group">
-        <input type="text" name="username" class="login-field" value="" placeholder="Usuario/Correo" maxlength="100" id="login-name" required>
-        <label class="login-field-icon fui-user" for="login-name"></label>
+          <input type="text" name="username" class="login-field" value="" placeholder="Usuario/Correo" maxlength="100" id="login-name" required>
+          <label class="login-field-icon fui-user" for="login-name"></label>
         </div>
 
         <div class="control-group">
-        <input type="password" name="password" class="login-field" value="" placeholder="Contraseña"  id="login-pass" required>
-        <label class="login-field-icon fui-lock" for="login-pass"></label>
+          <input type="password" name="password" class="login-field" value="" placeholder="Contraseña"  id="login-pass" required>
+          <label class="login-field-icon fui-lock" for="login-pass"></label>
         </div>
          
         <input type="submit" class="btn btn-primary btn-large btn-block" value="INGRESAR">

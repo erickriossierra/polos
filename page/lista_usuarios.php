@@ -12,7 +12,7 @@
             <div class="col-md-2">
                 <a href=".\portal.php" class="btn btn-outline-dark"><i class="icon-home"></i> Inicio</a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 div_entre">
                 <a href=".\alta_usuario.php" class="btn btn-outline-success"><i class="icon-add-user"></i> Alta usuario</a>
             </div>
         </div>
@@ -20,7 +20,7 @@
 <!-- INICIO FILTROS -->
     <div id="filtros"> Selecciona el filtro deseado
         <form class="row" action="lista_usuarios.php" method="post">
-            <div class="col-sm-2">
+            <div class="col-md-2" id="div_select">
             <select class="form-select" name="filtro" id="filtro" onchange="filtros()">
                 <option value="0"></option>
                 <option value="1">Correo</option>
@@ -34,7 +34,7 @@
             <div class="col-md-6" name="div_text2" id="div_text2">
                 <input type="texto" name="texto2" id="texto2" class="form-control">
             </div>
-            <div class="col-sm-auto" name="div_rol" id="div_rol">
+            <div class="col-md-auto" name="div_rol" id="div_rol">
                 <select class="form-select" id="rol" name="rol">
 <?php 
     $listado=buscarpermisos();

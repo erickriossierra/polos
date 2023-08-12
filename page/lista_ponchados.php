@@ -11,7 +11,7 @@
             <div class="col-md-6"><h2>Listado de <b>Ponchados</b></h2></div>
 
             <div class="col-md-4"></div>
-            <div class="col-md-2">
+            <div class="col-md-2 div_abajo">
                 <a href=".\portal.php" class="btn btn-outline-dark"><i class="icon-home"></i> Inicio</a>
             </div>
 
@@ -20,18 +20,18 @@
 <!-- INICIO FILTROS -->
     <div id="filtros"> Selecciona el filtro deseado
         <form class="row" action="lista_ponchados.php" method="post">
-            <div class="col-sm-2">
-            <select class="form-select" name="filtro" id="filtro" onchange="filtros()">
-                <option value="0"></option>
-                <option value="1">Pedido</option>
-                <option value="2">Cliente</option>
-                <option value="3">Carrera</option>
-                <option value="4">Fecha</option>
-                <option value="5">Talla</option>
-                <option value="6">Color</option>
-                <option value="7">Playera</option>
-                <option value="8">Estatus</option>
-            </select>
+            <div class="col-md-2" id="div_select">
+                <select class="form-select" name="filtro" id="filtro" onchange="filtros()">
+                    <option value="0"></option>
+                    <option value="1">Pedido</option>
+                    <option value="2">Cliente</option>
+                    <option value="3">Carrera</option>
+                    <option value="4">Fecha</option>
+                    <option value="5">Talla</option>
+                    <option value="6">Color</option>
+                    <option value="7">Playera</option>
+                    <option value="8">Estatus</option>
+                </select>
             </div>
             <div class="col-md-1" name="div_text" id="div_text">
                 <input type="text" name="texto" id="texto" class="form-control">
@@ -39,13 +39,13 @@
             <div class="col-md-6" name="div_text2" id="div_text2">
                 <input type="texto" name="texto2" id="texto2" class="form-control">
             </div>
-            <div class="col-sm-6" name="div_text3" id="div_text3">
+            <div class="col-md-6" name="div_text3" id="div_text3">
                 <input type="texto" name="texto3" id="texto3" class="form-control">
             </div>
-            <div class="col-sm-4" name="div_fecha" id="div_fecha">
+            <div class="col-md-4" name="div_fecha" id="div_fecha">
                 <input type="date" name="fecha" id="fecha" max="<?php $hoy=date("Y-m-d"); echo $hoy;?>" class="form-control" >
             </div>
-            <div class="col-sm-4" name="div_fecha2" id="div_fecha2">
+            <div class="col-md-4" name="div_fecha2" id="div_fecha2">
                 <input type="date" name="fecha2" id="fecha2" class="form-control" value="<?php echo $hoy;?>" >
             </div>
             <div class="col-md-auto" id="div_talla">
@@ -106,99 +106,101 @@ while ($row=mysqli_fetch_object($listado)){
         </form>
     </div>
  <!--FILTROS FIN-->   
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Pedido</th>          
-                <th>Cliente</th>
-                <th>Playera</th> 
-                <th>Corte</th>            
-                <th>Color</th> 
-                <th class="numero">Talla</th> 
-                <th class="numero">Carrera</th> 
-                <th class="numero">Facultad</th> 
-                <th class="numero">Universidad</th> 
-                <th class="numero">Cantidad</th>                      
-				<th>Entrega</th>
-                <th>Estatus</th>
-                <th class="numero">Acciones</th>
-          
-            </tr>
-        </thead>
-         
-        <tbody>    
-<?php 
-$listado=listarponchados();
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Pedido</th>          
+                    <th>Cliente</th>
+                    <th>Playera</th> 
+                    <th>Corte</th>            
+                    <th>Color</th> 
+                    <th class="numero">Talla</th> 
+                    <th class="numero">Carrera</th> 
+                    <th class="numero">Facultad</th> 
+                    <th class="numero">Universidad</th> 
+                    <th class="numero">Cantidad</th>                      
+                    <th>Entrega</th>
+                    <th>Estatus</th>
+                    <th class="numero">Acciones</th>
+              
+                </tr>
+            </thead>
+             
+            <tbody>    
+    <?php 
+    $listado=listarponchados();
 
-while ($row=mysqli_fetch_object($listado)){
-    $id=$row->idclixplay;
-    $idpedido=$row->idpedido;
-    $playera=$row->nombre_playera;
-    $corte=$row->nombre_corte;
-    $color=$row->nombre_color;
-    $talla=$row->letra;
-    $carrera=$row->caini;
-    $facultad=$row->faini;
-    $universidad=$row->siglas;
-    $cantidad=$row->cantidad;
-    $entrega=$row->fecha_entrega;
-    $nombre=$row->nombre;
-    $nombre=$nombre.' '.$row->apellidop;
-    $estatus=$row->estatus;
+    while ($row=mysqli_fetch_object($listado)){
+        $id=$row->idclixplay;
+        $idpedido=$row->idpedido;
+        $playera=$row->nombre_playera;
+        $corte=$row->nombre_corte;
+        $color=$row->nombre_color;
+        $talla=$row->letra;
+        $carrera=$row->caini;
+        $facultad=$row->faini;
+        $universidad=$row->siglas;
+        $cantidad=$row->cantidad;
+        $entrega=$row->fecha_entrega;
+        $nombre=$row->nombre;
+        $nombre=$nombre.' '.$row->apellidop;
+        $estatus=$row->estatus;
 
-?>
-    <tr>
-        <td class="numero">
-            <?php echo $idpedido;?>
-        </td>            
-        <td>
-            <?php echo $nombre;?>
-        </td>
-        <td>
-            <?php echo $playera;?>
-        </td>
-        <td>
-            <?php echo $corte;?>
-        </td>
-        <td>
-            <?php echo $color;?>
-        </td>
-        <td class="numero">
-            <?php echo $talla;?>
-        </td>
-        <td class="numero">
-            <?php echo $carrera;?>
-        </td>
-        <td class="numero">
-            <?php echo $facultad;?>
-        </td>
-        <td class="numero">
-            <?php echo $universidad;?>
-        </td>
-        <td class="numero">
-            <?php echo $cantidad;?>            
-        </td>
-        <td>
-            <?php echo $entrega;?>                
-        </td>
-        <td>
-            <?php echo $estatus; ?> 
-        </td>
-<?php if ( $_SESSION['permisos']!=2){ ?>                
-        <td class="numero">
-        <a href="modifica_ponchado.php?id=<?php echo $id;?>" class="edit" title="Editar" data-toggle="tooltip">
-            <i class="icon-edit"></i>
-        </a>
-    
-        </td>
-<?php } ?>
-    </tr>   
-<?php
-}
-?> 
+    ?>
+        <tr>
+            <td class="numero">
+                <?php echo $idpedido;?>
+            </td>            
+            <td>
+                <?php echo $nombre;?>
+            </td>
+            <td>
+                <?php echo $playera;?>
+            </td>
+            <td>
+                <?php echo $corte;?>
+            </td>
+            <td>
+                <?php echo $color;?>
+            </td>
+            <td class="numero">
+                <?php echo $talla;?>
+            </td>
+            <td class="numero">
+                <?php echo $carrera;?>
+            </td>
+            <td class="numero">
+                <?php echo $facultad;?>
+            </td>
+            <td class="numero">
+                <?php echo $universidad;?>
+            </td>
+            <td class="numero">
+                <?php echo $cantidad;?>            
+            </td>
+            <td>
+                <?php echo $entrega;?>                
+            </td>
+            <td>
+                <?php echo $estatus; ?> 
+            </td>
+    <?php if ( $_SESSION['permisos']!=2){ ?>                
+            <td class="numero">
+            <a href="modifica_ponchado.php?id=<?php echo $id;?>" class="edit" title="Editar" data-toggle="tooltip">
+                <i class="icon-edit"></i>
+            </a>
+        
+            </td>
+    <?php } ?>
+        </tr>   
+    <?php
+    }
+    ?> 
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script type="text/javascript">

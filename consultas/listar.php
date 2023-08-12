@@ -131,12 +131,7 @@ function listarpedidos(){
 		break;
 		case "2":
 		$nombre=$_POST['texto2'];
-		$WHERE = "where nombre like '%$nombre%' OR apellidop like '%$nombre%' OR apellidom like '%$nombre%' ";
-		break;
-		case "5":
-		$min=$_POST['fecha'];
-		$max=$_POST['fecha2'];
-		$WHERE = "Where fecha_entrega BETWEEN'$min' and '$max' ";
+		$WHERE = "WHERE nombre like '%$nombre%' OR apellidop like '%$nombre%' OR apellidom like '%$nombre%' ";
 		break;
 		case "3":
 		$pago=$_POST['pago'];
@@ -145,6 +140,11 @@ function listarpedidos(){
 		case "4":
 		$estatus=$_POST['estatus'];
 		$WHERE = "WHERE e.idestatus=$estatus ";
+		break;
+		case "5":
+		$min=$_POST['fecha'];
+		$max=$_POST['fecha2'];
+		$WHERE = "WHERE fecha_entrega BETWEEN'$min' and '$max' ";
 		break;
 		}
 	}
@@ -164,7 +164,38 @@ function listarpedidos(){
 /***LLENADO DE TABLA DE Entregas***/
 function listarpedcli($id){
 	$conn=conectarse();
-	$query= "SELECT DISTINCT(cxp.idpedido), p.*, u.nombre,u.apellidop, e.nombreestatus estatus, ep.nombreestatus pago FROM pedidos p INNER JOIN clientexplayeras cxp ON p.idpedido=cxp.idpedido INNER JOIN usuarios u on cxp.idcliente=u.iduser INNER JOIN estatus e ON p.idestatus=e.idestatus INNER JOIN estatus ep ON p.idestatuspago=ep.idestatus WHERE iduser=$id order by p.fecha_entrega";
+	$WHERE = "WHERE";
+	if(isset($_POST['filtro'])){
+		$filtro=$_POST['filtro'];
+		switch($filtro){
+		case "0":
+		$WHERE = "WHERE";
+		break;
+		case "1":
+		$pedido=$_POST['texto'];
+		$WHERE = "WHERE p.idpedido = $pedido AND";
+		break;
+		case "2":
+		$nombre=$_POST['texto2'];
+		$WHERE = "WHERE nombre like '%$nombre%' OR apellidop like '%$nombre%' OR apellidom like '%$nombre%' AND";
+		break;
+		case "3":
+		$pago=$_POST['pago'];
+		$WHERE = "WHERE ep.idestatus=$pago AND";
+		break;
+		case "4":
+		$estatus=$_POST['estatus'];
+		$WHERE = "WHERE e.idestatus=$estatus AND";
+		break;
+		case "5":
+		$min=$_POST['fecha'];
+		$max=$_POST['fecha2'];
+		$WHERE = "WHERE fecha_entrega BETWEEN'$min' and '$max' AND";
+		break;
+		}
+	}
+	$query= "SELECT DISTINCT(cxp.idpedido), p.*, u.nombre,u.apellidop, e.nombreestatus estatus, ep.nombreestatus pago FROM pedidos p INNER JOIN clientexplayeras cxp ON p.idpedido=cxp.idpedido INNER JOIN usuarios u on cxp.idcliente=u.iduser INNER JOIN estatus e ON p.idestatus=e.idestatus INNER JOIN estatus ep ON p.idestatuspago=ep.idestatus $WHERE iduser=$id order by p.fecha_entrega";
+//print_r($query);
 
 	$res=$sql=mysqli_query($conn,$query);
 
@@ -172,7 +203,7 @@ function listarpedcli($id){
 
 	if ($res<=0) {
 
-		echo "<br><p class='resultado'>NO HAY REGISTROS</p>";
+		echo "<p class='resultado'>NO HAY REGISTROS</p>";
 	} 
 		return $sql;
 }
